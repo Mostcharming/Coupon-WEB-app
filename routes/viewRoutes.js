@@ -5,4 +5,7 @@ const router = express.Router();
 
 router.get('/', viewController.getOverview);
 
+router.get('/', viewController.getOverview);
+router.get('/', viewController.getOverview);
+
 module.exports = router;

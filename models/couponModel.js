@@ -27,7 +27,11 @@ const couponSchema = new mongoose.Schema(
       //this rounds up the value but a trick was used to keep the figure at 2 decimalPlaces
       set: (val) => Math.round(val * 10) / 10, // 4.666666, 46.6666, 47, 4.7
     },
-
+    status: {
+      type: String,
+      enum: ['OPEN', 'FREE', 'PREMIUM'],
+      default: 'OPEN',
+    },
     price: {
       type: Number,
       required: [true, 'A coupon must have a price'],
