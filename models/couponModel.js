@@ -24,7 +24,6 @@ const couponSchema = new mongoose.Schema(
       default: 4.5,
       min: [1, 'Rating must be above 1.0'],
       max: [5, 'Rating must be below 5.0'],
-      //this rounds up the value but a trick was used to keep the figure at 2 decimalPlaces
       set: (val) => Math.round(val * 10) / 10, // 4.666666, 46.6666, 47, 4.7
     },
     status: {
@@ -82,6 +81,10 @@ const couponSchema = new mongoose.Schema(
 
 couponSchema.index({ price: 1, ratingsAverage: -1 });
 couponSchema.index({ slug: 1 });
+
+couponSchema.virtual('durationWeeks').get(function () {
+  return this.duration / 7;
+});
 
 couponSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });

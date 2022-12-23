@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+// const bodyParser = require('body-parser');
+const compression = require('compression');
+
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
@@ -54,6 +57,8 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 
 app.use(xss());
+
+app.use(compression());
 
 app.use('/user', userRouter);
 app.use('/coupon', couponRouter);

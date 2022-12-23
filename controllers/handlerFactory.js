@@ -10,7 +10,7 @@ exports.deleteOne = (Model) =>
       return next(new AppError('No document found with that ID', 404));
     }
 
-    res.status(200).json({
+    res.status(204).json({
       status: 'success',
       data: null,
     });
@@ -68,6 +68,7 @@ exports.getOne = (Model, popOptions) =>
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
+    if (req.params.couponId) filter = { coupon: req.params.couponId };
 
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()

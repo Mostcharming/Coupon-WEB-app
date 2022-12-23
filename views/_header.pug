@@ -25,13 +25,22 @@ header#header
                         a(href='#', title='Categories')
                           span.tab-txt Categories
                 #header-account
-                  ul.nav-list.inline-list.visible-lg-block
-                    li.tab.action.signup
-                      a(href='/signUp')
-                        span.tab-txt Sign Up
-                    li.tab.action.login.last
-                      a(href='/login')
-                        span.tab-txt Login
+                  if user
+                    ul.nav-list.inline-list.visible-lg-block
+                      li.tab.action.logout
+                        a(href='/logout')
+                          span.tab-txt Logout
+                      li.tab.action
+                        a(href="#") 
+                          span.tab.txt=`Welcome ${user.name}`
+                  else
+                    ul.nav-list.inline-list.visible-lg-block
+                      li.tab.action.signup
+                        a(href='/signup')
+                          span.tab-txt Sign Up
+                      li.tab.action.login.last
+                        a(href='/login')
+                          span.tab-txt Login
                 .toggle-group
                   a#toggle-menu.toggle(href='#', title='Menu', aria-expanded='false', aria-label='Toggle navigation')
                     i.icon.fas.fa-bars(aria-hidden='true')

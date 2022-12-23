@@ -1,17 +1,33 @@
 const express = require('express');
 const couponController = require('../controllers/couponController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
 router
   .route('/')
   .get(couponController.getAllCoupons)
-  .post(couponController.createCoupon);
+  .post(
+    authController.protect,
+    authController.restrictTo('admin', 'vendor'),
+    couponController.createCoupon
+  );
 
 router
   .route('/:id')
   .get(couponController.getCoupon)
-  .patch(couponController.updateCoupon)
-  .delete(couponController.deleteCoupon);
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin', 'vendor'),
+    couponController.uploadCouponImages,
+    couponController.resizeCouponImages,
+    couponController.updateCoupon
+  )
+
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin', 'vendor'),
+    couponController.deleteCoupon
+  );
 
 module.exports = router;

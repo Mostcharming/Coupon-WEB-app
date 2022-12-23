@@ -1,0 +1,19 @@
+extends base
+
+block content
+    #panel-login.page-section.mw-75-md.mw-50-lg.txt-center.txt-left-lg.center-block.clearfix
+      h2 Join Digital Talent
+      form.clearfix
+        input(type='hidden')
+        .form-content
+            fieldset.form-group
+                input#j_name.rnd.login-field.w-100(type='text', placeholder='Full Name', aria-label='Full Name')
+            fieldset.form-group
+                input#j_username.rnd.login-field.w-100(type='email', placeholder='Email Address', aria-label='Email Address')
+            fieldset.form-group
+                input#j_password.rnd.pwd-field.w-100(type='password', placeholder='Password', maxlength='101', aria-label='Password')
+            fieldset.form-group
+                input#j_passwordC.rnd.pwd-field.w-100(type='password', placeholder='Password Confirm', maxlength='101', aria-label='Password')
+            input.btn.btn-submit.blue.btn-md(type='submit', value='signup')
+      .flexbox-md.space-between.m-t-1.f-14.txt-center
+        
